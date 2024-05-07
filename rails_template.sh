@@ -1,17 +1,17 @@
-#!/bin/bash
+#!/bin/bash --login
 
 # Get the app name
 echo "Enter your Rails app name:"
 read app_name
 
 # Create new Rails app with PostgreSQL, Tailwind CSS
-rails new $app_name -d postgresql --css tailwind
+rails new $app_name --css tailwind --database=postgresql
 
 # Move into the app directory
 cd $app_name
 
 # Create a gemset with the name
-rvm gemset create $app_name
+rvm gemset create $app_name && rvm gemset use $app_name
 
 # Install gems
 bundle install
@@ -50,6 +50,12 @@ echo 'gem "byebug", group: [:development, :test]' >> Gemfile
 
 # Install the gems
 bundle install
+
+# Install importmap
+rails importmap:install
+
+# Install tailwind css
+bundle exec rails tailwindcss:install
 
 # Install Devise
 bundle exec rails generate devise:install
@@ -95,8 +101,13 @@ git add .
 git commit -m "Initialize project"
 
 # Create bash alias to set up RVM Ruby version and gemset
-echo 'alias $app_name="rvm use $(cat .ruby-version) && rvm gemset use $app_name"' >> ~/.bashrc
+ruby_version=`ruby -v | awk '{print $2}'`
+echo "alias $app_name=\"rvm use $ruby_version && rvm gemset use $app_name\"" >> ~/.bashrc
 source ~/.bashrc
 
 # Display success message
 echo "Your Rails app $app_name is set up with PostgreSQL, Tailwind CSS, Devise, Friendly ID, Annotate, PaperTrail, and Active Storage."
+
+# Start rails app
+`$app_name`
+./bin/dev
