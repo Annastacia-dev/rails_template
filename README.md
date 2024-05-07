@@ -1,5 +1,5 @@
 ## rails_template.sh
-bash script for initializing a new rails app.
+Bash script for initializing a new rails app.
 
 ## what
 - postgresql database
@@ -17,7 +17,7 @@ bash script for initializing a new rails app.
 - initialize git & commit changes
 - start the rails app
 
-  ## how
-  - while in the path containing the file run `chmod +x rails_template.sh` to make it executable
-  - then run `./rails_template.sh` or whichever path you want your rails app to be contained
-  - you will be prompted to enter the app name then the script will run.
+## how
+- while in the path containing the file run `chmod +x rails_template.sh` to make it executable
+- then run `./rails_template.sh` or whichever path you want your rails app to be contained
+- you will be prompted to enter the app name then the script will run.
