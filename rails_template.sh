@@ -45,6 +45,7 @@ echo 'gem "friendly_id"' >> Gemfile
 echo 'gem "paper_trail"' >> Gemfile
 echo 'gem "dotenv-rails"' >> Gemfile
 echo 'gem "rubocop"' >> Gemfile
+echo 'gem "hotwire-livereload", group: [:development]' >> Gemfile
 echo 'gem "annotate", group: [:development]' >> Gemfile
 echo 'gem "byebug", group: [:development, :test]' >> Gemfile
 
@@ -71,6 +72,9 @@ bundle exec rails generate paper_trail:install [--with-changes] [--uuid]
 
 # Install Active Storage
 bundle exec rails active_storage:install
+
+# Install Livereload
+bundle exec rails livereload:install
 
 # Run migrations
 bundle exec rails db:migrate
